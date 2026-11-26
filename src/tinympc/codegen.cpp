@@ -8,7 +8,7 @@
 //#include <error.h>
 #include "error.hpp"
 
-#include <iostream>
+#include "tiny_debug.hpp"
 #include <Eigen/Dense>
 
 // #include "types.hpp"
@@ -35,7 +35,7 @@ static void create_directory(const char* dir, int verbose) {
     if (mkdir(dir, S_IRWXU|S_IRWXG|S_IROTH)) {
         if (errno == EEXIST) { // Skip if directory already exists
             if (verbose)
-                std::cout << dir << " already exists, skipping." << std::endl;
+                TINY_DEBUG(std::cout << dir << " already exists, skipping." << std::endl);
         } else {
             ERROR_MSG(EXIT_FAILURE, "Failed to create directory %s", dir);
         }
@@ -45,7 +45,7 @@ static void create_directory(const char* dir, int verbose) {
 // TODO: Make this fail if tiny_setup has not already been called
 int tiny_codegen(TinySolver* solver, const char* output_dir, int verbose) {
     if (!solver) {
-        std::cout << "Error in tiny_codegen: solver is nullptr" << std::endl;
+        TINY_DEBUG(std::cout << "Error in tiny_codegen: solver is nullptr" << std::endl);
         return 1;
     }
     int status = 0;
@@ -61,7 +61,7 @@ int tiny_codegen_with_sensitivity(TinySolver* solver, const char* output_dir,
                                 tinyMatrix* dK, tinyMatrix* dP,
                                 tinyMatrix* dC1, tinyMatrix* dC2, int verbose) {
     if (!solver) {
-        std::cout << "Error in tiny_codegen_with_sensitivity: solver is nullptr" << std::endl;
+        TINY_DEBUG(std::cout << "Error in tiny_codegen_with_sensitivity: solver is nullptr" << std::endl);
         return 1;
     }
 

@@ -1,7 +1,7 @@
 #include "rho_benchmark.hpp"
 #include <cmath>
 #include <algorithm>
-#include <iostream>
+#include "tiny_debug.hpp"
 #ifdef ARDUINO
 #include <Arduino.h>
 #else

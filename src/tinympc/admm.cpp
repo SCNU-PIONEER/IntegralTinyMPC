@@ -1,11 +1,9 @@
-#include <iostream>
+#include "tiny_debug.hpp"
 
 #include "admm.hpp"
 #include "rho_benchmark.hpp"
 #include "tiny_api.hpp"
 #include "tiny_api_constants.hpp"
-
-#define DEBUG_MODULE "TINYALG"
 
 extern "C" {
 
@@ -472,7 +470,7 @@ int solve(TinySolver *solver)
             solver->solution->x = solver->work->vnew;
             solver->solution->u = solver->work->znew;
 
-            std::cout << "Solver converged in " << solver->work->iter << " iterations" << std::endl;
+            TINY_DEBUG(std::cout << "Solver converged in " << solver->work->iter << " iterations" << std::endl);
 
             return 0;
         }
